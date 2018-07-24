@@ -25,6 +25,7 @@ REFERENCES [dbo].[CompanyType] ([CompanyTypeID])
 ALTER TABLE [dbo].[Company] CHECK CONSTRAINT [FK_Company_CompanyType]
 SET ANSI_NULLS ON
 SET QUOTED_IDENTIFIER ON
+GO
 CREATE TRIGGER [dbo].[company_AspNet_SqlCacheNotification_Trigger] ON [dbo].[Company]
                        FOR INSERT, UPDATE, DELETE AS BEGIN
                        SET NOCOUNT ON
