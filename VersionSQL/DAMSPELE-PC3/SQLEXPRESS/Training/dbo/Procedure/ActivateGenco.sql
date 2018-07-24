@@ -1,25 +1,24 @@
 /****** Object:  Procedure [dbo].[ActivateGenco]    Committed by VersionSQL https://www.versionsql.com ******/
 
-CREATE procedure ActivateGenco
-(
-@RRID int,
-@Activate Int
-)
-as
+CREATE PROCEDURE [dbo].[ActivateGenco]
+    (
+      @RRID INT ,
+      @Activate INT
+    )
+AS
+    IF ( @Activate > 0 )
+        UPDATE  RegulatingReserveConst
+        SET     Active = 'Y'
+        WHERE   RegulatingReserveID = @RRID
 
-if(@Activate > 0)
-update RegulatingReserveConst
-set Active ='Y'
-where RegulatingReserveID =@RRID
+    ELSE
+        UPDATE  RegulatingReserveConst
+        SET     Active = 'N'
+        WHERE   RegulatingReserveID = @RRID
 
-Else
-Update RegulatingReserveConst
-Set Active = 'N'
-where RegulatingReserveID =@RRID
-
-if @@RowCount > 0
-  return 1
-  else
-  return 0
+    IF @@RowCount > 0
+        RETURN 1
+    ELSE
+        RETURN 0
 
 
