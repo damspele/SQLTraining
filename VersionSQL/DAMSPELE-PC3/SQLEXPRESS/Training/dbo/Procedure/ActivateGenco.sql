@@ -16,6 +16,7 @@ AS
         SET     Active = 'N'
         WHERE   RegulatingReserveID = @RRID
 
+
     IF @@RowCount > 0
         RETURN 1
     ELSE
